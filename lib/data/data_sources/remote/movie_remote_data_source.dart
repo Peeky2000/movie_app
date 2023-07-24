@@ -1,11 +1,6 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
-import 'package:http/http.dart';
-import 'package:movie_app/data/core/api_constants.dart';
+import 'package:movie_app/data/core/url_end_point.dart';
 import 'package:movie_app/data/models/movie_model.dart';
-import 'package:http/http.dart' as http;
-import 'package:movie_app/data/models/movies_trending_result_model.dart';
+
 
 import '../../core/api_client.dart';
 
@@ -29,7 +24,8 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getTrending() async {
     try {
-      final response = await _client.get("trending/movie/day");
+      String path = UrlEndPoint.movies.trendingMovie;
+      final response = await _client.get(path);
       var jsonData = response["results"] as List;
       List<MovieModel> movies =
           List<MovieModel>.from(jsonData.map((e) => MovieModel.fromJson(e)))
@@ -50,7 +46,8 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getPopular() async {
     try {
-      final response = await _client.get("movie/popular");
+      String path = UrlEndPoint.movies.popularMovie;
+      final response = await _client.get(path);
       var jsonData = response["results"] as List;
       List<MovieModel> movies =
           List<MovieModel>.from(jsonData.map((e) => MovieModel.fromJson(e)))
@@ -71,7 +68,8 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getPlayingNow() async{
     try{
-      final response = await _client.get("movie/now_playing");
+      String path = UrlEndPoint.movies.playingNowMovie;
+      final response = await _client.get(path);
       var jsonData = response["results"] as List;
       List<MovieModel> movies = List<MovieModel>.from(jsonData.map((e) => MovieModel.fromJson(e))).toList();
       print("Playing now");
@@ -90,7 +88,8 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getComingSoon() async{
     try{
-      final response = await _client.get("movie/upcoming");
+      String path = UrlEndPoint.movies.comingSoonMovie;
+      final response = await _client.get(path);
       var jsonData = response["results"] as List;
       List<MovieModel> movies = List<MovieModel>.from(jsonData.map((e) => MovieModel.fromJson(e))).toList();
       print("Coming");
