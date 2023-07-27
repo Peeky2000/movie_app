@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:movie_app/domain/entities/app_error.dart';
 import 'package:movie_app/domain/entities/movie_entity.dart';
+import 'package:movie_app/domain/entities/no_params.dart';
 import 'package:movie_app/domain/repositories/movie_repository.dart';
 
-import '../entities/app_error.dart';
-import '../entities/no_params.dart';
+
 
 abstract class MovieUseCase<Type , Params>{
   Future<Either<AppError , Type>> getTrending(Params params);

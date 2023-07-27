@@ -1,4 +1,5 @@
 class UrlEndPoint{
+  // ignore: library_private_types_in_public_api
   static const _MovieEndPoint movies = _MovieEndPoint();
 }
 
